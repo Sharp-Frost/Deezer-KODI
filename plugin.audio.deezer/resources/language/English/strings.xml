@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<strings>
+	<string id="50000">Search Any</string>
+	<string id="50001">Search Artist</string>
+	<string id="50002">Search Album</string>
+	<string id="50003">Radios</string>
+	<string id="50004">My Playlists</string>
+	<string id="50005">My Albums</string>
+	<string id="50006">My Account</string>
+	<string id="50007">Enter search:</string>
+	<string id="50008">Enter artist name:</string>
+	<string id="50009">Enter album name:</string>
+	<string id="50010">Enter radio name:</string>
+	<string id="50011">Next ..</string>
+	<string id="50012">Authentification</string>
+	<string id="50013">My Music</string>
+	<string id="50014">My Playlists</string>
+	<string id="50015">My Albums</string>
+	
+</strings>
+

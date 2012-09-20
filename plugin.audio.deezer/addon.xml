@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.audio.deezer"
+       name="Deezer"
+       version="0.0.1"
+       provider-name="Simon Maurice">
+  <requires>
+    <import addon="xbmc.python" version="2.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="deezer.py">
+    <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">Deezer online music service</summary>
+    <summary lang="fr">Service de musique en ligne Deezer</summary>
+    <description lang="en">Deezer online music service</description>
+    <description lang="fr">Service de musique en ligne Deezer</description>
+  </extension>
+</addon>
