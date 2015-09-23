@@ -2,9 +2,9 @@
 <addon id="plugin.audio.deezer"
        name="Deezer"
        version="0.0.1"
-       provider-name="Sharp-Frost">
+       provider-name="Sharp-Frost, Bounz">
   <requires>
-    <import addon="xbmc.python" version="2.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="deezer.py">
     <provides>audio</provides>
@@ -15,5 +15,12 @@
     <summary lang="fr">Service de musique en ligne Deezer</summary>
     <description lang="en">Deezer online music service</description>
     <description lang="fr">Service de musique en ligne Deezer</description>
+    <disclaimer lang="en"></disclaimer>
+    <language></language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum></forum>
+    <website>https://github.com/t-oster/Deezer-XBMC</website>
+    <email></email>
+    <source></source>
   </extension>
 </addon>

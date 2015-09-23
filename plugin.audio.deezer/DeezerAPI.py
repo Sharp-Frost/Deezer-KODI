@@ -232,12 +232,12 @@ class DeezerAPI():
         
     #GET ALBUM
     def getAlbum(self,idAlbum):
-        album = self.getRemoteData(base_url+'album/'+idAlbum)
+        album = self.getRemoteData(base_url+'album/'+str(idAlbum))
         return album 
     
     #GET TRACK
     def getTrack(self,idTrack):
-        track = self.getRemoteData(base_url+'track/'+idTrack)
+        track = self.getRemoteData(base_url+'track/'+str(idTrack))
         return track 
     
     # Extract Release year from a date yyyy-mm-dd
