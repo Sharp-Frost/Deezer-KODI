@@ -1,7 +1,7 @@
 '''
 Created on 19 juin 2012
 
-@author: TDNQ1352
+@author: Sharp-Frost
 '''
 from DeezerDomain import Track, Album, Artist, Playlist
 from Json2Python import Json2Python
@@ -13,7 +13,7 @@ __language__  = __addon__.getLocalizedString
 __cwd__       = __addon__.getAddonInfo('path')
 
 jsonDeserializer = Json2Python()
-base_url = 'http://api.deezer.com/2.0/'
+base_url = 'http://api.deezer.com/'
 baseDir = __cwd__
 access_token=None
 
@@ -191,18 +191,17 @@ class DeezerAPI():
         print('DeezerAPI.searchAlbumSongs:'+idAlbum)
         if idAlbum!=None:
             album=self.getAlbum(idAlbum)
+            print('URL : '+base_url+'album/'+idAlbum+'/tracks&output=json')
             listResult = self.getRemoteData(base_url+'album/'+idAlbum+'/tracks&output=json')
             nbItems=0
             if 'total' in listResult:
                 nbItems = listResult['total']
             if 'data' in listResult:
                 for value in listResult['data']:
-                    if isinstance(value,Track):
-                        track=self.getTrack(value.id);
-                        release_year=self.getReleaseYear(album.release_date)
+                    if isinstance(value,Track):                        
                         u =value.preview
-                        liz=xbmcgui.ListItem(value.title, iconImage=album.cover, thumbnailImage="") 
-                        liz.setInfo( type="Music", infoLabels={ "title":value.title, "artist": value.artist['name'], "album":album.title, "duration":value.duration, "tracknumber":int(track.track_position), "year":release_year   } )
+                        liz=xbmcgui.ListItem(value.title) 
+                        liz.setInfo( type="Music", infoLabels={ "title":value.title, "artist": value.artist.name, "tracknumber":int(value.track_position)   } )
                         xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False,totalItems=nbItems)
     
     
@@ -210,16 +209,17 @@ class DeezerAPI():
     def search(self,searchWord):
         print('DeezerAPI.search:'+searchWord)
         if searchWord!=None:
+            print('URL : '+ base_url+'search?q='+searchWord+'&output=json')
             listResult = self.getRemoteData(base_url+'search?q='+searchWord+'&output=json')
             nbItems=0
             if 'total' in listResult:
                 nbItems = listResult['total']
             if 'data' in listResult:
                 for value in listResult['data']:
-                    if isinstance(value,Track):
-                        u =value.preview
-                        liz=xbmcgui.ListItem(value.title, iconImage=value.album['cover'], thumbnailImage="")
-                        liz.setInfo( type="Music", infoLabels={ "artist": value.artist['name'], "album":value.album['title'], "duration":value.duration } )
+                    if isinstance(value,Track):                        
+                        u =value.preview                        
+                        liz=xbmcgui.ListItem(value.title, iconImage=value.album.cover)                        
+                        liz.setInfo( 'music', { 'duration':value.duration, "artist": value.artist.name , "album":value.album.title } )
                         xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False,totalItems=nbItems)
             if 'next' in listResult:
                 u = "%s?mode=next&link=%s" % (sys.argv[0],listResult['next'])
@@ -235,16 +235,7 @@ class DeezerAPI():
         album = self.getRemoteData(base_url+'album/'+str(idAlbum))
         return album 
     
-    #GET TRACK
-    def getTrack(self,idTrack):
-        track = self.getRemoteData(base_url+'track/'+str(idTrack))
-        return track 
+
     
-    # Extract Release year from a date yyyy-mm-dd
-    def getReleaseYear(self,date):
-        if date!=None:
-            splitedDate = str(date).split('-')
-            return int(splitedDate[0])
-        else:
-            return 1900
+
     

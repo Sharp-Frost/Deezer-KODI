@@ -1,7 +1,7 @@
 '''
 Created on 18 juin 2012
 
-@author: TDNQ1352
+@author: Sharp-Frost
 '''
 import urllib2
 import json
